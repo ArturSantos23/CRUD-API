@@ -212,7 +212,7 @@ controller.deleteGenero = async (req, res) => {
     return;
   }
 
-  Filmes.destroy({
+  Generos.destroy({
     where: { idGenero: id },
   })
     .then((data) => {
