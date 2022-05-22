@@ -1,8 +1,7 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
-import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 
 import FilmesDataService from "../services/Filmes.service";
 
@@ -16,26 +15,12 @@ export default function ListComponent() {
           setdataFilmes(data);
           console.log(data);
         } else {
-          console.log(response.data);
+          console.log("Erro ao dar load" + response.data);
         }
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error);
       });
-    // const url = "http://localhost:8080/filmes";
-    // axios
-    //   .get(url)
-    //   .then((res) => {
-    //     if (res.data.success) {
-    //       const data = res.data.data;
-    //       setdataFilmes(data);
-    //     } else {
-    //       alert("Error Web Service!");
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     alert(error);
-    //   });
   }, []);
   return (
     <table className="table table-hover table-striped">
@@ -63,7 +48,7 @@ export default function ListComponent() {
           <td>{data.foto}</td>
           <td>{data.genero}</td>
           <td>
-            <Link className="btn btn-outline-info " to={"/edit/" + data.id}>
+            <Link className="btn btn-outline-info " to={"/edit/" + data.idFilme}>
               Edit
             </Link>
           </td>

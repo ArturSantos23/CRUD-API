@@ -13,6 +13,9 @@ router.post("/testdata/filme", Filmes.CreateFilmeTESTDATA);
 // Create filme
 router.post("/create", Filmes.create);
 
+// Create genero
+router.post("/create/genero", Filmes.genero);
+
 // Procurar todos os Filmes
 router.get("/list", Filmes.list);
 

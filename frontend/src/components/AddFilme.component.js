@@ -1,7 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export default function EditComponent() {
   const [titulo, settitulo] = useState("");
@@ -52,9 +52,11 @@ export default function EditComponent() {
             onChange={(value) => setgenero(value.target.value)}
           >
             <option defaultValue>Escolha um género:</option>
-            <option value="1">Admin...</option>
-            <option value="2">Project Manager</option>
-            <option value="3">Programer</option>
+            <option value="1">Ação</option>
+            <option value="2">Aventura</option>
+            <option value="3">Drama</option>
+            <option value="4">Comédia</option>
+            <option value="5">Terror</option>
           </select>
         </div>
       </div>

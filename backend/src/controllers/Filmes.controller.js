@@ -90,15 +90,16 @@ controller.create = async (req, res) => {
 };
 
 controller.list = async (req, res) => {
-  Filmes.findAll()
-    .then((data) => {
-      res.send(data);
+  const data = await Filmes.findAll()
+    .then(function (data) {
+      return data;
     })
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Error while retrieving 'Filmes'.",
       });
     });
+  res.json({ success: true, data: data });
 };
 
 controller.get = async (req, res) => {
