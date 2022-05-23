@@ -47,7 +47,7 @@ function App() {
           <Routes>
             <Route path="/" element={<List />} />
             <Route path="/form" element={<Form />} />
-            <Route path="/edit/:id" element={<Edit />} />
+            <Route exact path="/edit/:idFilme" element={<Edit />} />
           </Routes>
         </div>
       </div>

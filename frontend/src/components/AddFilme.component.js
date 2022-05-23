@@ -1,7 +1,8 @@
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import axios from "axios";
-import React, { useState } from "react";
+
+import FilmesDataService from "../services/Filmes.service";
 
 export default function EditComponent() {
   const [titulo, settitulo] = useState("");
@@ -79,24 +80,23 @@ export default function EditComponent() {
     } else if (genero === "") {
       alert("Insert Address!");
     } else {
-      const baseUrl = "http://localhost:8080/filmes/create";
       const datapost = {
         titulo: titulo,
         DescricaoFilme: DescricaoFilme,
         foto: foto,
         genero: genero,
       };
-      axios
-        .post(baseUrl, datapost)
+      FilmesDataService.create(datapost)
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);
+            console.log(datapost);
           } else {
             alert(response.data.message);
           }
         })
         .catch((error) => {
-          alert("Error 34 " + error);
+          console.log(error);
         });
     }
   }

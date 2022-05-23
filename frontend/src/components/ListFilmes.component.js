@@ -12,8 +12,8 @@ export default function ListComponent() {
       .then((response) => {
         if (response.data.success) {
           const data = response.data.data;
-          setdataFilmes(data);
           console.log(data);
+          setdataFilmes(data);
         } else {
           console.log("Erro ao dar load" + response.data);
         }
@@ -48,7 +48,7 @@ export default function ListComponent() {
           <td>{data.foto}</td>
           <td>{data.genero}</td>
           <td>
-            <Link className="btn btn-outline-info " to={"/edit/" + data.idFilme}>
+            <Link className="btn btn-outline-info " to={`/edit/${data.idFilme}`} >
               Edit
             </Link>
           </td>

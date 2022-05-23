@@ -53,7 +53,7 @@ controller.genero = async (req, res) => {
   // Guardar Genero na base de dados
   Generos.create(genero)
     .then((data) => {
-      res.send(data);
+      res.json({ success: true, message: "Género Criado", data: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -80,7 +80,7 @@ controller.create = async (req, res) => {
   // Guardar Filme na base de dados
   Filmes.create(filme)
     .then((data) => {
-      res.send(data);
+      res.json({ success: true, message: "Filme Registado", data: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -90,16 +90,15 @@ controller.create = async (req, res) => {
 };
 
 controller.list = async (req, res) => {
-  const data = await Filmes.findAll()
-    .then(function (data) {
-      return data;
+  Filmes.findAll()
+    .then((data) => {
+      res.json({ success: true, message: "Filme Registado", data: data });
     })
     .catch((err) => {
       res.status(500).send({
         message: err.message || "Error while retrieving 'Filmes'.",
       });
     });
-  res.json({ success: true, data: data });
 };
 
 controller.get = async (req, res) => {
@@ -116,7 +115,7 @@ controller.get = async (req, res) => {
   Filmes.findByPk(id)
     .then((data) => {
       if (data) {
-        res.send(data);
+        res.json({ success: true, data: data });
       } else {
         res.status(404).send({
           message: "Nao foi possivel encontrar o Filme com o id=" + id,
@@ -138,12 +137,13 @@ controller.update = async (req, res) => {
   })
     .then((data) => {
       if (data == 1) {
-        res.send({
+        res.json({
+          success: true,
           message: "O Filme com o id=" + id + " foi atualizado com sucesso!.",
           data: data,
         });
       } else {
-        res.send({
+        res.json({
           message:
             "Não foi possivel atualizar o Filme com o id=" +
             id +
