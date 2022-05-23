@@ -14,7 +14,7 @@ export default function EditComponent() {
     <div>
       <div className="form-row justify-content-center">
         <div className="form-group col-md-6">
-          <label htmlFor="inputPassword4">Titulo </label>
+          <label htmlFor="inputTitulo">Titulo </label>
           <input
             type="text"
             className="form-control"
@@ -24,7 +24,7 @@ export default function EditComponent() {
           />
         </div>
         <div className="form-group col-md-6 mt-2">
-          <label htmlFor="inputEmail4">Descrição</label>
+          <label htmlFor="inputDescricao">Descrição</label>
           <input
             type="text"
             className="form-control"
@@ -34,7 +34,7 @@ export default function EditComponent() {
           />
         </div>
         <div className="form-group col-md-6 mt-2">
-          <label htmlFor="inputEmail4">Foto</label>
+          <label htmlFor="inputFoto">Foto</label>
           <input
             type="text"
             className="form-control"
@@ -46,9 +46,9 @@ export default function EditComponent() {
       </div>
       <div className="form-row">
         <div className="form-group col-md-6 mt-2">
-          <label htmlFor="inputState">Género</label>
+          <label htmlFor="inputGenero">Género</label>
           <select
-            id="inputState"
+            id="inputGenero"
             className="form-control"
             onChange={(value) => setgenero(value.target.value)}
           >

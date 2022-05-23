@@ -36,6 +36,4 @@ var Filmes = sequelize.define(
   }
 );
 
-Filmes.belongsTo(Genero);
-
 module.exports = Filmes;

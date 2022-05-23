@@ -92,7 +92,7 @@ controller.create = async (req, res) => {
 controller.list = async (req, res) => {
   Filmes.findAll()
     .then((data) => {
-      res.json({ success: true, message: "Filme Registado", data: data });
+      res.json({ success: true, data: data });
     })
     .catch((err) => {
       res.status(500).send({
@@ -139,7 +139,7 @@ controller.update = async (req, res) => {
       if (data == 1) {
         res.json({
           success: true,
-          message: "O Filme com o id=" + id + " foi atualizado com sucesso!.",
+          message: "O Filme com o id=" + id + " foi atualizado com sucesso!",
           data: data,
         });
       } else {
@@ -147,7 +147,7 @@ controller.update = async (req, res) => {
           message:
             "Não foi possivel atualizar o Filme com o id=" +
             id +
-            ". Talvez 'Filmes' não foi encontrado ou req.body is empty!",
+            ". Talvez 'Filmes' não foi encontrado ou req.body está vazio!",
         });
       }
     })
