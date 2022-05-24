@@ -16,7 +16,7 @@ class FilmesDataService {
     return http.delete(`/delete/${id}`);
   }
 //   deleteAll() {
-//     return http.delete("/tutorials");
+//     return http.delete("/");
 //   }
 }
 export default new FilmesDataService();

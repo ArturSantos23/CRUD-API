@@ -27,7 +27,7 @@ var Filmes = sequelize.define(
       allowNull: false,
       references: {
         model: Genero,
-        key: "idGenero",
+        key: "id",
       },
     },
   },
@@ -35,5 +35,7 @@ var Filmes = sequelize.define(
     timestamps: false,
   }
 );
+
+Filmes.belongsTo(Genero)
 
 module.exports = Filmes;

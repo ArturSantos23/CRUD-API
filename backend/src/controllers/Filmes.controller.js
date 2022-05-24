@@ -6,6 +6,7 @@ var Generos = require("../models/Generos.model");
 
 const controller = {};
 const { Op } = require("sequelize");
+
 sequelize.sync();
 
 controller.CreateGeneroTESTDATA = async (req, res) => {
@@ -90,7 +91,7 @@ controller.create = async (req, res) => {
 };
 
 controller.list = async (req, res) => {
-  Filmes.findAll()
+  Filmes.findAll({ include: [Generos] })
     .then((data) => {
       res.json({ success: true, data: data });
     })
@@ -161,16 +162,18 @@ controller.update = async (req, res) => {
 controller.delete = async (req, res) => {
   const id = req.params.id;
 
-  Filmes.destroy({
+  await Filmes.destroy({
     where: { idFilme: id },
   })
     .then((data) => {
       if (data == 1) {
-        res.send({
+        res.json({
+          success: true,
+          deleted: del,
           message: "O Filme com o id=" + id + " foi eliminado com sucesso!",
         });
       } else {
-        res.send({
+        res.json({
           message:
             "Não foi possivel eliminar o Filme com o id=" +
             id +
