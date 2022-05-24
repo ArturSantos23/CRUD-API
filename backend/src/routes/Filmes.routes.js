@@ -19,6 +19,9 @@ router.post("/create/genero", Filmes.genero);
 // Procurar todos os Filmes
 router.get("/list", Filmes.list);
 
+// Procurar todos os Generos
+router.get("/listgeneros", Filmes.listGeneros);
+
 // Procurar um Filme por ID
 router.get("/get/:id", Filmes.get);
 

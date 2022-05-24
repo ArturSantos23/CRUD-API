@@ -3,6 +3,9 @@ class FilmesDataService {
   getAll() {
     return http.get("/list");
   }
+  getAllGeneros() {
+    return http.get("/listgeneros");
+  }
   get(id) {
     return http.get(`/get/${id}`);
   }

@@ -32,7 +32,7 @@ controller.CreateFilmeTESTDATA = async (req, res) => {
     DescricaoFilme: "Um filme com ação incrível!",
     titulo: "Die Hard",
     foto: "Die_Hard.jpg",
-    genero: 4,
+    generoId: 4,
   };
   // Guardar Filme na base de dados
   Filmes.create(filme)
@@ -76,7 +76,7 @@ controller.create = async (req, res) => {
     DescricaoFilme: req.body.DescricaoFilme,
     titulo: req.body.titulo,
     foto: req.body.foto,
-    genero: req.body.genero,
+    generoId: req.body.generoId,
   };
   // Guardar Filme na base de dados
   Filmes.create(filme)
@@ -102,6 +102,18 @@ controller.list = async (req, res) => {
     });
 };
 
+controller.listGeneros = async (req, res) => {
+  Generos.findAll()
+    .then((data) => {
+      res.json({ success: true, data: data });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Error while retrieving 'Filmes'.",
+      });
+    });
+};
+
 controller.get = async (req, res) => {
   const id = req.params.id;
 
@@ -113,7 +125,7 @@ controller.get = async (req, res) => {
     return;
   }
 
-  Filmes.findByPk(id)
+  Filmes.findByPk(id, { include: [Generos] })
     .then((data) => {
       if (data) {
         res.json({ success: true, data: data });
@@ -217,7 +229,7 @@ controller.deleteGenero = async (req, res) => {
   }
 
   Generos.destroy({
-    where: { idGenero: id },
+    where: { id: id },
   })
     .then((data) => {
       if (data == 1) {

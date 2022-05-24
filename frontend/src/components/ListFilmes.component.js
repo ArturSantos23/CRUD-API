@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import Swal from "sweetalert2";
+import "../assets/css/style.css";
 
 import FilmesDataService from "../services/Filmes.service";
 
@@ -27,11 +28,21 @@ export default function ListComponent() {
     <table className="table table-hover table-striped">
       <thead className="thead-dark">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Titulo</th>
-          <th scope="col">DescricaoFilme</th>
-          <th scope="col">Foto</th>
-          <th scope="col">Genero</th>
+          <th scope="col" className="text-center">
+            #
+          </th>
+          <th scope="col" className="text-center">
+            Titulo
+          </th>
+          <th scope="col" className="text-center">
+            DescricaoFilme
+          </th>
+          <th scope="col" className="text-center">
+            Foto
+          </th>
+          <th scope="col" className="text-center">
+            Genero
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -43,23 +54,28 @@ export default function ListComponent() {
     return dataFilmes.map((data, index) => {
       return (
         <tr key={index}>
-          <th>{data.idFilme}</th>
-          <td>{data.titulo}</td>
-          <td>{data.DescricaoFilme}</td>
-          <td>{data.foto}</td>
-          {/* <td>
-            <img src={data.foto} alt="" className=""></img>
-          </td> */}
-          <td>{data.genero.DescricaoGenero}</td>
-          <td>
-            <Link
-              className="btn btn-outline-info "
-              to={`/edit/${data.idFilme}`}
-            >
+          <th className="text-center align-middle">{data.idFilme}</th>
+          <td className="text-center align-middle">{data.titulo}</td>
+          <td className="text-center align-middle">{data.DescricaoFilme}</td>
+          {/* <td>{data.foto}</td> */}
+          <td className="img-filme text-center align-middle">
+            <div>
+              <img
+                src={data.foto}
+                alt=""
+                className="w-75 d-inline-block rounded-4 img-thumbnail"
+              ></img>
+            </div>
+          </td>
+          <td className="text-center align-middle">
+            {data.genero.DescricaoGenero}
+          </td>
+          <td className="text-center align-middle">
+            <Link className="btn btn-outline-info" to={`/edit/${data.idFilme}`}>
               Edit
             </Link>
           </td>
-          <td>
+          <td className="text-center align-middle">
             <button
               className="btn btn-outline-danger"
               onClick={() => OnDelete(data.idFilme)}

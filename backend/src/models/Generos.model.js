@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 var sequelize = require("../config/db.config");
 
 const Genero = sequelize.define(
-  "Generos",
+  "genero",
   {
     DescricaoGenero: {
       type: Sequelize.STRING,

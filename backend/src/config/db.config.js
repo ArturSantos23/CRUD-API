@@ -6,7 +6,7 @@ const database = new Sequelize(
   "admin", //database password
   {
     host: "localhost",
-    port: "5432",
+    port: 5432,
     dialect: "postgres",
     pool: {
       max: 5,
@@ -16,7 +16,5 @@ const database = new Sequelize(
     },
   }
 );
-
-database.sync();
 
 module.exports = database;

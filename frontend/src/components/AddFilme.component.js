@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -8,8 +8,25 @@ export default function EditComponent() {
   const [titulo, settitulo] = useState("");
   const [DescricaoFilme, setDescricaoFilme] = useState("");
   const [foto, setfoto] = useState("");
-  const [genero, setgenero] = useState("");
+  const [selectgeneroId, setselectgenero] = useState("");
+  const [generos, setgeneros] = useState([]);
 
+  useEffect(() => {
+    FilmesDataService.getAllGeneros()
+      .then((response) => {
+        if (response.data.success) {
+          const data = response.data.data;
+          console.log(data);
+          setgeneros(data);
+        } else {
+          console.log(response.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // ignorar o warning 'react hook useeffect has a missing dependency'
   return (
     <div>
       <div className="form-row justify-content-center">
@@ -50,14 +67,14 @@ export default function EditComponent() {
           <select
             id="inputGenero"
             className="form-control"
-            onChange={(value) => setgenero(value.target.value)}
+            onChange={(value) => setselectgenero(value.target.value)}
           >
             <option defaultValue>Escolha um género:</option>
-            <option value="1">Ação</option>
-            <option value="2">Aventura</option>
-            <option value="3">Drama</option>
-            <option value="4">Comédia</option>
-            <option value="5">Terror</option>
+            {generos.map((generos, index) => (
+              <option key={index} value={generos.id}>
+                {generos.DescricaoGenero}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -74,17 +91,15 @@ export default function EditComponent() {
     if (titulo === "") {
       alert("Insira um titulo!");
     } else if (foto === "") {
-      alert("Insert the Phone!");
-    } else if (titulo === "") {
-      alert("Insert Name!");
-    } else if (genero === "") {
-      alert("Insert Address!");
+      alert("Insira uma foto!");
+    } else if (selectgeneroId === "") {
+      alert("Escolha um género!");
     } else {
       const datapost = {
         titulo: titulo,
         DescricaoFilme: DescricaoFilme,
         foto: foto,
-        genero: genero,
+        generoId: selectgeneroId,
       };
       FilmesDataService.create(datapost)
         .then((response) => {

@@ -22,20 +22,14 @@ var Filmes = sequelize.define(
       type: Sequelize.STRING,
       allowNull: false,
     },
-    genero: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: Genero,
-        key: "id",
-      },
-    },
   },
   {
     timestamps: false,
   }
 );
 
-Filmes.belongsTo(Genero)
+Filmes.belongsTo(Genero, {
+  foreignKey: { name: "generoId", allowNull: false },
+});
 
 module.exports = Filmes;

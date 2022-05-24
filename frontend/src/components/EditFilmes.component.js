@@ -6,12 +6,11 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import FilmesDataService from "../services/Filmes.service";
 
 export default function EditComponent() {
-  // const [dataFilmes, setdataFilmes] = useState([]);
   const [titulo, settitulo] = useState("");
   const [DescricaoFilme, setDescricaoFilme] = useState("");
   const [foto, setfoto] = useState("");
-  const [generoID, setgenero] = useState("");
-  const [generoDescricao, setgeneroDescricao] = useState("");
+  const [selectgeneroId, setselectgenero] = useState("");
+  const [generos, setgeneros] = useState([]);
 
   let { idFilme } = useParams();
 
@@ -22,12 +21,24 @@ export default function EditComponent() {
         if (response.data.success) {
           const data = response.data.data;
           console.log(data);
-          // setdataFilmes(data);
           settitulo(data.titulo);
           setDescricaoFilme(data.DescricaoFilme);
           setfoto(data.foto);
-          setgenero(data.genero);
-          setgeneroDescricao(data.genero.DescricaoGenero);
+          setselectgenero(data.generoId);
+        } else {
+          console.log(response.message);
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+
+    FilmesDataService.getAllGeneros()
+      .then((response) => {
+        if (response.data.success) {
+          const data = response.data.data;
+          console.log(data);
+          setgeneros(data);
         } else {
           console.log(response.message);
         }
@@ -77,14 +88,15 @@ export default function EditComponent() {
           <select
             id="inputGenero"
             className="form-control"
-            onChange={(value) => setgenero(value.target.value)}
+            onChange={(value) => setselectgenero(value.target.value)}
           >
-            <option value={generoID}>{generoDescricao}</option>
-            <option value="1">Ação</option>
-            <option value="2">Aventura</option>
-            <option value="3">Drama</option>
-            <option value="4">Comédia</option>
-            <option value="5">Terror</option>
+            {/* <option defaultValue={selectgeneroId}>{generos}</option> */}
+            <option defaultValue>Escolha um género:</option>
+            {generos.map((generos, index) => (
+              <option key={index} value={generos.id}>
+                {generos.DescricaoGenero}
+              </option>
+            ))}
           </select>
         </div>
       </div>
@@ -102,7 +114,7 @@ export default function EditComponent() {
       titulo: titulo,
       DescricaoFilme: DescricaoFilme,
       foto: foto,
-      genero: generoID,
+      generoId: selectgeneroId,
     };
     FilmesDataService.update(idFilme, datapost)
       .then((response) => {
