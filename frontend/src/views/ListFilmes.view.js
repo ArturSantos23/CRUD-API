@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import "../assets/css/style.css";
+import "../style.css";
 
 import FilmesDataService from "../services/Filmes.service";
 
@@ -57,7 +57,6 @@ export default function ListComponent() {
           <th className="text-center align-middle">{data.idFilme}</th>
           <td className="text-center align-middle">{data.titulo}</td>
           <td className="text-center align-middle">{data.DescricaoFilme}</td>
-          {/* <td>{data.foto}</td> */}
           <td className="img-filme text-center align-middle">
             <div>
               <img

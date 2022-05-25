@@ -15,7 +15,6 @@ export default function EditComponent() {
   let { idFilme } = useParams();
 
   useEffect(() => {
-    console.log("idFilme = " + idFilme);
     FilmesDataService.get(idFilme)
       .then((response) => {
         if (response.data.success) {

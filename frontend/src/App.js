@@ -2,9 +2,9 @@ import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import List from "./components/ListFilmes.component";
-import Form from "./components/AddFilme.component";
-import Edit from "./components/EditFilmes.component";
+import List from "./views/ListFilmes.view";
+import Form from "./views/AddFilme.view";
+import Edit from "./views/EditFilmes.view";
 
 function App() {
   return (

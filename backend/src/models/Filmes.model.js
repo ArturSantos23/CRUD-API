@@ -3,7 +3,7 @@ var sequelize = require("../config/db.config");
 var Genero = require("./Generos.model");
 
 var Filmes = sequelize.define(
-  "Filmes",
+  "filmes",
   {
     idFilme: {
       type: Sequelize.INTEGER,
