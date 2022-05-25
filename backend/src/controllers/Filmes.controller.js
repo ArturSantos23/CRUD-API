@@ -21,7 +21,7 @@ controller.CreateGeneroTESTDATA = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Erro na criacao de 'Generos'.",
+        message: err.message || "Erro na criacao de 'generos'.",
       });
     });
 };
@@ -58,7 +58,7 @@ controller.genero = async (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Erro na criacao de 'Generos'.",
+        message: err.message || "Erro na criacao de 'generos'.",
       });
     });
 };
@@ -180,8 +180,8 @@ controller.delete = async (req, res) => {
     .then((data) => {
       if (data == 1) {
         res.json({
+          data: data,
           success: true,
-          deleted: del,
           message: "O Filme com o id=" + id + " foi eliminado com sucesso!",
         });
       } else {
@@ -241,7 +241,7 @@ controller.deleteGenero = async (req, res) => {
           message:
             "Não foi possivel eliminar o Genero com o id=" +
             id +
-            ". Talvez 'Generos' não foi encontrado ou id=" +
+            ". Talvez 'generos' não foi encontrado ou id=" +
             id +
             " não existe!",
         });

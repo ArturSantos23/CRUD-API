@@ -6,9 +6,9 @@ const Filmes = require("../controllers/Filmes.controller");
 
 
 //Teste Create Genero
-router.post("/testdata/genero", Filmes.CreateGeneroTESTDATA);
+router.get("/testdata/genero", Filmes.CreateGeneroTESTDATA);
 //Teste Create Filme
-router.post("/testdata/filme", Filmes.CreateFilmeTESTDATA);
+router.get("/testdata/filme", Filmes.CreateFilmeTESTDATA);
 
 // Create filme
 router.post("/create", Filmes.create);

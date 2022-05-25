@@ -10,19 +10,7 @@ import FilmesDataService from "../services/Filmes.service";
 export default function ListComponent() {
   const [dataFilmes, setdataFilmes] = useState([]);
   useEffect(() => {
-    FilmesDataService.getAll()
-      .then((response) => {
-        if (response.data.success) {
-          const data = response.data.data;
-          console.log(data);
-          setdataFilmes(data);
-        } else {
-          console.log("Erro ao dar load" + response.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    loadFilmes();
   }, []);
   return (
     <table className="table table-hover table-striped">
@@ -50,6 +38,21 @@ export default function ListComponent() {
       </tbody>
     </table>
   );
+  function loadFilmes() {
+    FilmesDataService.getAll()
+      .then((response) => {
+        if (response.data.success) {
+          const data = response.data.data;
+          console.log(data);
+          setdataFilmes(data);
+        } else {
+          console.log("Erro ao dar load" + response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
   function LoadFillData() {
     return dataFilmes.map((data, index) => {
       return (
@@ -105,7 +108,9 @@ export default function ListComponent() {
     FilmesDataService.delete(idFilme)
       .then((response) => {
         if (response.data.success) {
+          console.log(response.data.message);
           Swal.fire("Apagado!", "O filme foi apagado com sucesso.", "success");
+          loadFilmes();
         }
       })
       .catch((error) => {
