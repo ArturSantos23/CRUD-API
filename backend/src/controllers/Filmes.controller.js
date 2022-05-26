@@ -91,7 +91,7 @@ controller.create = async (req, res) => {
 };
 
 controller.list = async (req, res) => {
-  Filmes.findAll({ include: [Generos] })
+  Filmes.findAll({ include: [Generos], order: [["idFilme", "ASC"]] })
     .then((data) => {
       res.json({ success: true, data: data });
     })
